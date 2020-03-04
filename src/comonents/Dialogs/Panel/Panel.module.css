@@ -1,0 +1,6 @@
+.panel {
+   background-color: yellow;
+   color:red;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
