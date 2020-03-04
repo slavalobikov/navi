@@ -1,0 +1,41 @@
+.item {
+    grid-area: n;
+    background-color: slateblue;
+
+}
+
+.item a {
+    text-decoration: none;
+    color: black;
+    margin-left: 15px;
+}
+
+
+.item a:hover {
+    color:mediumblue;
+}
+
+.fr {
+    margin-top: 100px;
+    text-align: center;
+
+}
+.frPage {
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+}
+.fr img {
+  /*  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;*/
+
+    width: 50px;
+    height: 50px;
+    border-radius: 35px;
+}
+
+.navFriends {
+    margin-top: 30px;
+    display: grid;
+    grid-auto-rows: 50px;
+    grid-template-columns: repeat(3, 1fr);
+}

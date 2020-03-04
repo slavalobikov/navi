@@ -1,0 +1,21 @@
+.item {
+    grid-area: bc;
+    background-color: darkgrey;
+    width: 100%;
+}
+
+.logoImg {
+    width:100%;
+}
+
+.logoAva {
+    width:200px;
+    height:200px;
+    border-radius: 100px;
+    margin-left: 50px;
+}
+
+.coment {
+    margin-left: 15px;
+    margin-top: 20px;
+}

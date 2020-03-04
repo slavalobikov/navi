@@ -1,0 +1,10 @@
+.item {
+    grid-area: h;
+    background-color:midnightblue;
+}
+
+
+
+.item img {
+    width: 60px;
+}
