@@ -1,10 +1,8 @@
-/*import React from 'react';*/
-/*import ReactDOM from 'react-dom';*/
+
 import './index.css';
-/*import App from './App';*/
 import * as serviceWorker from './serviceWorker';
-import {rerenderEntireTree} from "./render";
-import state from "./redux/state";
+
+import state, {subscribe} from "./redux/state";
 /*import state from './redux/state';
 import {addPost} from "./redux/state";
 import {addMessage} from "./redux/state";*/
@@ -40,8 +38,37 @@ export let rerenderEntireTree = () => {
                          postData={postData}*!/ />, document.getElementById('root'));
 };
 */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import store from "./redux/state";
+import {addPost, updateNewMessageText, updateNewPostText} from "./redux/state";
+import {addMessage} from "./redux/state";
 
-rerenderEntireTree(state);
+
+
+let rerenderEntireTree = (state) => {
+
+    ReactDOM.render(<App state={store.getState()}
+                         dispatch={store.dispatch.bind(store)}
+                         addMessage={store.addMessage.bind(store)}
+                         updateNewMessageText={store.updateNewMessageText.bind(store)}
+                         /*addPost={store.addPost.bind(store)}
+                         updateNewPostText={store.updateNewPostText.bind(store)}*/
+
+        /*DialogsData={DialogsData}
+                         messagesData={messagesData}
+                         postData={postData}*/ />, document.getElementById('root'));
+};
+
+
+
+
+
+rerenderEntireTree(store.getState());
+
+store.subscribe(rerenderEntireTree);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

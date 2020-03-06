@@ -6,6 +6,7 @@ import cls from './DialogsItem.module.css';
 
 const DialogItem = (props) => {
 
+
     return <div className={cls.dialog + ' ' + cls.active}>
        {/* <img className={cls.ava}  src={props.ava} alt="ava"/>*/}
 

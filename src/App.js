@@ -18,9 +18,10 @@ const App = (props) => {
                 <Nav imgs={props.state.NavPage.sidebar} name={props.state.NavPage.sidebar} />
                 <div className='app-wraper-content'>
                     <Route path="/Profile" render={() => <MyPost postData={props.state.profilePage.postData}
-                                                                 addPost={props.addPost}
+                                                                 dispatch={props.dispatch}
                                                                  newPostText={props.state.profilePage.newPostText}
-                                                                 updateNewPostText={props.updateNewPostText} />}/>
+                                                               /* addPost={props.addPost}
+                                                                updateNewPostText={props.updateNewPostText}*/ />}/>
                     <Route path="/Dialogs" render={() => <Dialogs DialogsData={props.state.messagesPage.DialogsData}
                                                                   messagesData={props.state.messagesPage.messagesData}
                                                                   addMessage={props.addMessage}
