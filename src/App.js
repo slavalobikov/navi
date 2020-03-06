@@ -24,9 +24,10 @@ const App = (props) => {
                                                                 updateNewPostText={props.updateNewPostText}*/ />}/>
                     <Route path="/Dialogs" render={() => <Dialogs DialogsData={props.state.messagesPage.DialogsData}
                                                                   messagesData={props.state.messagesPage.messagesData}
-                                                                  addMessage={props.addMessage}
+                                                                  /*addMessage={props.addMessage}*/
                                                                   newMessageText={props.state.messagesPage.newMessageText}
-                                                                  updateNewMessageText={props.updateNewMessageText}
+                                                                 /* updateNewMessageText={props.updateNewMessageText}*/
+                                                                  dispatch={props.dispatch}
                     />}/>
 
                     <Route path="/News" component={News}/>

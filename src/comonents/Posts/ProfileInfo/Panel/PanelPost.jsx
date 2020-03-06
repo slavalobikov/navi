@@ -9,17 +9,19 @@ const PanelPost = (props) => {
 
     let addPost = () => {
         let text = newPostElement.current.value;
-        /*props.addPost(text);*/
         props.dispatch({ type:'ADD-POST'});
-       /* props.updateNewPostText('');*/
-        props.dispatch({type:'UPDATE-NEW-POST-TEXT', newText: text})
+        props.dispatch({type:'UPDATE-NEW-POST-TEXT', newText: text} );
+        props.dispatch({type:'UPDATE-NEW-POST-TEXT', newText: ''} );
+     /*   // props.addPost(text);
+        // props.updateNewPostText('');
+        // newPostElement.current.value = '';*/
         /*alert(text);*/
     };
 
     let onChange = () => {
        let text = newPostElement.current.value;
-    /*   props.updateNewPostText(text);*/
         props.dispatch({ type:'UPDATE-NEW-POST-TEXT', newText:text })
+    /*   props.updateNewPostText(text);*/
     };
 
     return (

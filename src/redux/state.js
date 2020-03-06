@@ -71,14 +71,14 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer;
     },
-    addMessage(MessageText) {
+    /*addMessage(MessageText) {
         let newMessage = {
             id:4,
             text:MessageText
         };
         this._state.messagesPage.messagesData.push(newMessage);
         this._callSubscriber(this._state);
-    },
+    },*/
     updateNewMessageText (newText){
         this._state.messagesPage.newMessageText = newText;
         this._callSubscriber(this._state);
@@ -88,7 +88,7 @@ let store = {
             case 'ADD-POST':
                 let newPost = {
                     id: 4,
-                    text:postMessage,
+                    text: this._state.profilePage.newPostText  /*postMessage*/,
                     imgs:'https://svirtus.cdnvideo.ru/u-STFrqbm8weFIsMOI2D1O3ssSw=/0x0:200x200/200x200/filters:quality(100)/https://hb.bizmrg.com/esports-core-media/1a/1a93d8c0d3f74739720c28e3c9849051.png?m=02845029a29cec1a38d58d32810eb54f',
                     likeCounts:0,
                 };
@@ -99,7 +99,21 @@ let store = {
                 this._state.profilePage.newPostText = action.newText;
                 this._callSubscriber(this._state);
                 break;
+            case 'ADD-MESSAGE' :
+                let newMessage = {
+                    id:4,
+                    text:this._state.messagesPage.newMessageText
+                };
+                this._state.messagesPage.messagesData.push(newMessage);
+                this._callSubscriber(this._state);
+                break;
+            case 'UPDATE-NEW-MESSAGE-TEXT'  :
+                this._state.messagesPage.newMessageText = action.newText;
+                this._callSubscriber(this._state);
+
+
         }
+
 
 
 
