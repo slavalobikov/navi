@@ -1,4 +1,13 @@
 /*import {rerenderEntireTree} from "../render";*/
+import ProfileReducer from "./ProfileReducer";
+import MessagesReducer from "./MessagesReducer";
+import NavPageReducer from "./NavPageReducer";
+
+const ADD_POST = 'ADD-POST';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 
 let store = {
     _state: {
@@ -48,29 +57,20 @@ let store = {
         }
 
     },
-    getState() {
-        return this._state;
-    },
-    _callSubscriber()  {
-        console.log('dgdg')
-    },
-  /* addPost(postMessage) {
-        let newPost = {
-            id: 4,
-            text:postMessage,
-            imgs:'https://svirtus.cdnvideo.ru/u-STFrqbm8weFIsMOI2D1O3ssSw=/0x0:200x200/200x200/filters:quality(100)/https://hb.bizmrg.com/esports-core-media/1a/1a93d8c0d3f74739720c28e3c9849051.png?m=02845029a29cec1a38d58d32810eb54f',
-            likeCounts:0,
-        };
-        this._state.profilePage.postData.push(newPost);
-        this._callSubscriber(this._state);
-    },
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },*/
-    subscribe(observer) {
-        this._callSubscriber = observer;
-    },
+    /* addPost(postMessage) {
+      let newPost = {
+          id: 4,
+          text:postMessage,
+          imgs:'https://svirtus.cdnvideo.ru/u-STFrqbm8weFIsMOI2D1O3ssSw=/0x0:200x200/200x200/filters:quality(100)/https://hb.bizmrg.com/esports-core-media/1a/1a93d8c0d3f74739720c28e3c9849051.png?m=02845029a29cec1a38d58d32810eb54f',
+          likeCounts:0,
+      };
+      this._state.profilePage.postData.push(newPost);
+      this._callSubscriber(this._state);
+  },
+  updateNewPostText(newText) {
+      this._state.profilePage.newPostText = newText;
+      this._callSubscriber(this._state);
+  },*/
     /*addMessage(MessageText) {
         let newMessage = {
             id:4,
@@ -78,28 +78,44 @@ let store = {
         };
         this._state.messagesPage.messagesData.push(newMessage);
         this._callSubscriber(this._state);
-    },*/
-    updateNewMessageText (newText){
+    },
+     updateNewMessageText (newText){
         this._state.messagesPage.newMessageText = newText;
         this._callSubscriber(this._state);
+    },*/
+    getState() {
+        return this._state;
+    },
+    _callSubscriber()  {
+        console.log('dgdg')
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer;
     },
     dispatch(action) {
-        switch (action.type) {
-            case 'ADD-POST':
+
+         this._state.profilePage = ProfileReducer(this._state.profilePage, action);
+         this._state.messagesPage = MessagesReducer(this._state.messagesPage, action);
+         this._state.NavPage = NavPageReducer(this._state.NavPage, action);
+
+         this._callSubscriber(this._state);
+
+      /*  switch (action.type) {
+            case ADD_POST :
                 let newPost = {
                     id: 4,
-                    text: this._state.profilePage.newPostText  /*postMessage*/,
+                    text: this._state.profilePage.newPostText  /!*postMessage*!/,
                     imgs:'https://svirtus.cdnvideo.ru/u-STFrqbm8weFIsMOI2D1O3ssSw=/0x0:200x200/200x200/filters:quality(100)/https://hb.bizmrg.com/esports-core-media/1a/1a93d8c0d3f74739720c28e3c9849051.png?m=02845029a29cec1a38d58d32810eb54f',
                     likeCounts:0,
                 };
                 this._state.profilePage.postData.push(newPost);
                 this._callSubscriber(this._state);
                 break;
-            case 'UPDATE-NEW-POST-TEXT' :
+            case UPDATE_NEW_POST_TEXT :
                 this._state.profilePage.newPostText = action.newText;
                 this._callSubscriber(this._state);
                 break;
-            case 'ADD-MESSAGE' :
+            case ADD_MESSAGE :
                 let newMessage = {
                     id:4,
                     text:this._state.messagesPage.newMessageText
@@ -107,40 +123,20 @@ let store = {
                 this._state.messagesPage.messagesData.push(newMessage);
                 this._callSubscriber(this._state);
                 break;
-            case 'UPDATE-NEW-MESSAGE-TEXT'  :
+            case UPDATE_NEW_MESSAGE_TEXT  :
                 this._state.messagesPage.newMessageText = action.newText;
                 this._callSubscriber(this._state);
 
 
-        }
+        }*/
 
 
 
 
 
     }
-/*    dispatch (action) {
-        if (action.type === 'ADD-POST') {
-            debugger
-            let newPost = {
-
-                id: 4,
-                text: postMessage,
-                imgs: 'https://svirtus.cdnvideo.ru/u-STFrqbm8weFIsMOI2D1O3ssSw=/0x0:200x200/200x200/filters:quality(100)/https://hb.bizmrg.com/esports-core-media/1a/1a93d8c0d3f74739720c28e3c9849051.png?m=02845029a29cec1a38d58d32810eb54f',
-                likeCounts: 0,
-            };
-            this._state.profilePage.postData.push(newPost);
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-
-        }
-    }*/
-
-
-
 };
+
 
 /*
 let rerenderEntireTree = () => {
@@ -225,6 +221,31 @@ rerenderEntireTree = observer;
 };
 */
 
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+};
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+};
+export const addMessageCreator = () => {
+    return {
+        type: ADD_MESSAGE
+    }
+};
+
+export const updateNewMessageTextCreator = (text) => {
+
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        newText: text
+    }
+};
 
 
 export default store;

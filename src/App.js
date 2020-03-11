@@ -9,8 +9,6 @@ import News from "./comonents/News/News";
 import Music from "./comonents/Music/Music";
 
 const App = (props) => {
-
-
     return (
         <BrowserRouter>
             <div className="app-wraper ">
@@ -36,7 +34,7 @@ const App = (props) => {
             </div>
         </BrowserRouter>
     );
-}
+};
 
 
 export default App;
