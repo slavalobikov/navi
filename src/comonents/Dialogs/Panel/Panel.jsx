@@ -5,31 +5,33 @@ import {addMessageCreator, updateNewMessageTextCreator} from "../../../redux/sto
 
 
 const Panel = (props) => {
-let newMessageElement = React.createRef();
-let addMessage = () => {
-    let text = newMessageElement.current.value;
-    props.dispatch(addMessageCreator());
+/*let newMessageElement = React.createRef();*/
+let addMessage = (e) => {
+    /*let text = newMessageElement.current.value;*/
+    let text = e.target.value;
+/*    props.dispatch(addMessageCreator());
     props.dispatch(updateNewMessageTextCreator(text));
-    props.dispatch(updateNewMessageTextCreator(''));
-    /*    props.addMessage(text);
+    props.dispatch(updateNewMessageTextCreator(''));*/
+    props.addMessage(text);
     props.updateNewMessageText('');
-    newMessageElement.current.value = '';*/
     /*   props.dispatch ({type: 'ADD-MESSAGE'});
     props.dispatch({type:'UPDATE-NEW-MESSAGE-TEXT', newText: text});
   props.dispatch({type:'UPDATE-NEW-MESSAGE-TEXT', newText: '' });*/
 };
-
-let onMessageChange = () => {
-      let text = newMessageElement.current.value;
-      props.dispatch(updateNewMessageTextCreator(text))
+let onMessageChange = (e) => {
+      /*let text = newMessageElement.current.value;*/
+    let text = e.target.value;
+    props.updateNewMessageText(text);
+     /* props.dispatch(updateNewMessageTextCreator(text))*/
     /*props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT' , newText: text })*/
      /*console.log(text);
     props.updateNewMessageText(text);*/
 
 };
+debugger
     return (
         <div className={cls.panel}>
-            <textarea ref={newMessageElement} value={props.newMessageText} onChange={onMessageChange} />
+            <textarea  value={props.newMessageText} onChange={onMessageChange} />
             <button onClick={ addMessage }>Отправить</button>
 
         </div>

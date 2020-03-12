@@ -18,6 +18,8 @@ const App = (props) => {
                     <Route path="/Profile" render={() => <MyPost postData={props.state.profilePage.postData}
                                                                  dispatch={props.dispatch}
                                                                  newPostText={props.state.profilePage.newPostText}
+                                                                 store={props.store}
+
                                                                /* addPost={props.addPost}
                                                                 updateNewPostText={props.updateNewPostText}*/ />}/>
                     <Route path="/Dialogs" render={() => <Dialogs DialogsData={props.state.messagesPage.DialogsData}
@@ -26,6 +28,7 @@ const App = (props) => {
                                                                   newMessageText={props.state.messagesPage.newMessageText}
                                                                  /* updateNewMessageText={props.updateNewMessageText}*/
                                                                   dispatch={props.dispatch}
+                                                                  store={props.store}
                     />}/>
 
                     <Route path="/News" component={News}/>

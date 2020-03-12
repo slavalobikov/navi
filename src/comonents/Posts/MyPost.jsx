@@ -22,7 +22,8 @@ const MyPost = (props) => {
                            /* addPost={props.addPost}
                              updateNewPostText={props.updateNewPostText}*/
                              postData={props.postData}
-                             newPostText={props.newPostText} />
+                             newPostText={props.newPostText}
+                             state={props.state} store={props.store}/>
                 {/*<Post text={postData[0].text}  imgs={postData[0].imgs} like='20' />*/}
                 {/*<Post text={postData[1].text}  imgs={postData[1].imgs} like='1530' />*/}
            <div className={cls.coment}>{ postsElements }</div>

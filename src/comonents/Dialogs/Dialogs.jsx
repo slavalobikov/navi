@@ -4,6 +4,7 @@ import cls from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import Panel from "./Panel/Panel";
+import PanelContainer from "./Panel/PanelContainer";
 
 /*
 const DialogItem = (props) => {
@@ -51,8 +52,9 @@ const Dialogs = (props) => {
             <div> {messagesElements} </div>
 
         </div>
-        <Panel dispatch={props.dispatch}
+        <PanelContainer dispatch={props.dispatch}
                newMessageText={props.newMessageText}
+                        store={props.store}
              /*  updateNewMessageText={props.updateNewMessageText}*//>
             </div>
 
