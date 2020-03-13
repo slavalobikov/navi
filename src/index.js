@@ -9,22 +9,24 @@ import App from './App';
 import store from "./redux/ReduxStore";
 import {addPost, updateNewMessageText, updateNewPostText} from "./redux/store";
 import {addMessage} from "./redux/store";
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 
 
 
 let rerenderEntireTree = (state) => {
 
-    ReactDOM.render(<App /*state={store.getState()}*/ state={state}
-                                                      store={store}
-                         dispatch={store.dispatch.bind(store)}
-                         /*addMessage={store.addMessage.bind(store)}
-                         updateNewMessageText={store.updateNewMessageText.bind(store)}*/
-                         /*addPost={store.addPost.bind(store)}
-                         updateNewPostText={store.updateNewPostText.bind(store)}*/
+    ReactDOM.render (
+        <BrowserRouter>
+            <Provider store={store}>
+        <App state={state}
+             store={store}
+             dispatch={store.dispatch.bind(store)} />
+            </Provider>
+        </BrowserRouter>
 
-        /*DialogsData={DialogsData}
-                         messagesData={messagesData}
-                         postData={postData}*/ />, document.getElementById('root'));
+        , document.getElementById('root'));
+
 };
 
 
