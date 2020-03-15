@@ -9,7 +9,7 @@ const YouName = (props) => {
 
     return <div>
 
-
+       Твое имя {props.name } , you id {props.id}
     </div>
 };
 
