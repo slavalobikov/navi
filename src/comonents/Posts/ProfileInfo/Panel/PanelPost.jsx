@@ -5,10 +5,8 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../
 
 const PanelPost = (props) => {
 
-    let addPost = (text) => {
-        props.addPost(text);
-        props.updateNewPostText(text);
-        props.updateNewPostText('');
+    let addPost = () => {
+        props.addPost();
     };
 
     let onChange = (e) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {addMessageCreator, updateNewMessageTextCreator} from "../../../redux/store";
+import {addMessageCreator, updateNewMessageTextCreator} from "../../../redux/MessagesReducer";
 import Panel from "./Panel";
 import {connect} from "react-redux";
 
@@ -24,18 +24,20 @@ import {connect} from "react-redux";
 };  Контейнерная компанента до конекта (45)*/  /*КОМЕНТАРИЙ ( тут была контейнерная функция, которая создалась в контенте сама) 45)*/
 
 let mapStateToProps = (state) => {
+
     return {
         newMessageText: state.messagesPage.newMessageText
-    }
-
+    };
 };
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessageText: (text) => {
-            dispatch(updateNewMessageTextCreator(text))
+        updateNewMessageText: (newText) => {
+            dispatch(updateNewMessageTextCreator(newText))
         },
-        addMessage: (text) => {
+        addMessage: () => {
             dispatch(addMessageCreator());
+
+
         }
     }
 };

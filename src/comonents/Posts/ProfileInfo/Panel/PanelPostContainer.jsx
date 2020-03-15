@@ -9,9 +9,7 @@ const PanelPostContainer = (props) => {
     let newPostText = props.store.getState().profilePage.newPostText;
 
     let addPost = () => {
-        let text = newPostText;
         props.store.dispatch(addPostActionCreator());
-        props.store.dispatch(updateNewPostTextActionCreator(text));
         props.store.dispatch(updateNewPostTextActionCreator(''));
     };
 

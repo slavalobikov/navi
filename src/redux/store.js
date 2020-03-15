@@ -5,8 +5,9 @@ import NavPageReducer from "./NavPageReducer";
 
 const ADD_POST = 'ADD-POST';
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 
 
 let store = {
@@ -56,33 +57,8 @@ let store = {
             ]
         }
 
-    },
-    /* addPost(postMessage) {
-      let newPost = {
-          id: 4,
-          text:postMessage,
-          imgs:'https://svirtus.cdnvideo.ru/u-STFrqbm8weFIsMOI2D1O3ssSw=/0x0:200x200/200x200/filters:quality(100)/https://hb.bizmrg.com/esports-core-media/1a/1a93d8c0d3f74739720c28e3c9849051.png?m=02845029a29cec1a38d58d32810eb54f',
-          likeCounts:0,
-      };
-      this._state.profilePage.postData.push(newPost);
-      this._callSubscriber(this._state);
-  },
-  updateNewPostText(newText) {
-      this._state.profilePage.newPostText = newText;
-      this._callSubscriber(this._state);
-  },*/
-    /*addMessage(MessageText) {
-        let newMessage = {
-            id:4,
-            text:MessageText
-        };
-        this._state.messagesPage.messagesData.push(newMessage);
-        this._callSubscriber(this._state);
-    },
-     updateNewMessageText (newText){
-        this._state.messagesPage.newMessageText = newText;
-        this._callSubscriber(this._state);
-    },*/
+    }, /*Cтарый стор*/
+
     getState() {
         return this._state;
     },

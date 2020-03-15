@@ -33,16 +33,14 @@ const ProfileReducer = (state = initialState, action) => {
             case ADD_POST :
                 let newPost = {
                     id: 4,
-                    text: state.newPostText  /*postMessage*/,
+                    text: state.newPostText,
                     imgs:'https://svirtus.cdnvideo.ru/u-STFrqbm8weFIsMOI2D1O3ssSw=/0x0:200x200/200x200/filters:quality(100)/https://hb.bizmrg.com/esports-core-media/1a/1a93d8c0d3f74739720c28e3c9849051.png?m=02845029a29cec1a38d58d32810eb54f',
                     likeCounts:0,
                 };
                 state.postData.push(newPost);
-               /* this._callSubscriber(this._state);*/
                 break;
             case UPDATE_NEW_POST_TEXT :
                 state.newPostText = action.newText;
-                /*this._callSubscriber(this._state);*/
                 break;
             default: return state;
 
