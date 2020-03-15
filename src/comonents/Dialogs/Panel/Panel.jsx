@@ -34,6 +34,7 @@ debugger
             <textarea  value={props.newMessageText} onChange={onMessageChange} />
             <button onClick={ addMessage }>Отправить</button>
 
+
         </div>
 
     );

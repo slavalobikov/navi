@@ -35,7 +35,7 @@ const Dialogs = (props) => {
          {id:'3', text: 'My name is Gorec'}
      ];*/  /*Вынесли в index js (before redux )*/
 
-    let dialogsElements = props.DialogsData.map ( d => <DialogItem user={d.name} id={d.id} ava={d.imgs}/> );
+    let dialogsElements = props.DialogsData.map ( d => <DialogItem user={d.name} id={d.id} ava={d.imgs} /> );
     let messagesElements = props.messagesData.map( m => <Message text={m.text} />);
 
 

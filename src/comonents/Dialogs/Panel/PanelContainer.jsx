@@ -36,8 +36,6 @@ let mapDispatchToProps = (dispatch) => {
         },
         addMessage: (text) => {
             dispatch(addMessageCreator());
-            dispatch(updateNewMessageTextCreator(text));
-            dispatch(updateNewMessageTextCreator(''));
         }
     }
 };
