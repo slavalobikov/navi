@@ -1,14 +1,14 @@
 import React from "react";
-import DialogItem from "../Dialogs/DialogItem/DialogItem";
-import YouName from "./YouName";
+import User from "./User";
+
 
 
 
 const Friends = (props) => {
 
-  let friendsElements = props.friends.map ( n => <YouName name={n.name} id={n.id}  /> );
+  let friendsElements = props.friends.map ( n => <User name={n.name} id={n.id} key={n.id}  imgs={n.imgs} /> );
 
-  debugger
+
   return (
       <div>
 
@@ -16,7 +16,7 @@ const Friends = (props) => {
 
       </div>
   )
-  debugger
+
 };
 
 export default Friends

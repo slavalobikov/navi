@@ -7,7 +7,7 @@ import Message from "../Dialogs/Message/Message";
 
 const Nav = (props) => {
 
-    let NavFriendsElement = props.imgs.map( nf => <NavFriend  imgs={nf.frAva} name={nf.frName} />);
+    let NavFriendsElement = props.imgs.map( nf => <NavFriend key={nf.id} imgs={nf.frAva} name={nf.frName} />);
 
     return (
         <nav className={cls.item}>

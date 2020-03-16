@@ -13,7 +13,7 @@ const MyPost = (props) => {
          {id: '1', text: 'Ты ничего бы не смог без меня!', imgs:'https://gamepedia.cursecdn.com/dota2_gamepedia/7/7f/ArtStyle.jpg' , likeCounts: '20' },
          {id: '2', text: 'Было топ, спасибо за эмоции', imgs:'https://svirtus.cdnvideo.ru/1curTl4HhDeZhkpcTU5MyOK8hKM=/0x0:327x327/200x200/filters:quality(100)/https://hb.bizmrg.com/esports-core-media/b7/b72150c6301704818231406ecb66bfd5.jpg?m=fc0447665b6498567651879444f5957e' , likeCounts: '2584' }
      ];*/
-    let postsElements = props.postData.map ( p =>  <Post text={p.text}  imgs={p.imgs} likeCounts={p.likeCounts} /> );
+    let postsElements = props.postData.map ( p =>  <Post text={p.text} key={p.id}  imgs={p.imgs} likeCounts={p.likeCounts} /> );
 
     return (
         <div className={cls.item}>

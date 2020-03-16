@@ -13,7 +13,7 @@ const PanelPost = (props) => {
         let text = e.target.value;
         props.updateNewPostText(text);
     };
-debugger
+
 
     return (
         <div className={cls.panel}>

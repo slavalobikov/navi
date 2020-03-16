@@ -1,0 +1,39 @@
+.user {
+   display:grid;
+   grid-template-columns: 3fr 9fr;
+   background-color: darkgrey;
+   text-align: center;
+
+}
+
+.avaImg {
+   width: 150px;
+   height:150px;
+   border-radius: 100px;
+
+
+}
+
+
+/*
+.dialogsItems .dialog {
+   color:rosybrown;
+}
+
+.dialogsItems .active {
+   color:gold;
+}
+
+.dialogsItems {
+
+}
+
+.messages {
+
+}
+
+.messages .message {
+
+}
+*/
+
