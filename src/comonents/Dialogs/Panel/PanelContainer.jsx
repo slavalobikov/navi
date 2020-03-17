@@ -1,4 +1,3 @@
-/*import React from 'react';*/
 import {addMessageCreator, updateNewMessageTextCreator} from "../../../redux/MessagesReducer";
 import Panel from "./Panel";
 import {connect} from "react-redux";

@@ -29,25 +29,61 @@ let initialState = {
 
 const ProfileReducer = (state = initialState, action) => {
 
+
+
         switch (action.type) {
-            case ADD_POST :
+            case ADD_POST : {
                 let newPost = {
                     id: 4,
                     text: state.newPostText,
-                    imgs:'https://svirtus.cdnvideo.ru/u-STFrqbm8weFIsMOI2D1O3ssSw=/0x0:200x200/200x200/filters:quality(100)/https://hb.bizmrg.com/esports-core-media/1a/1a93d8c0d3f74739720c28e3c9849051.png?m=02845029a29cec1a38d58d32810eb54f',
-                    likeCounts:0,
+                    imgs: 'https://svirtus.cdnvideo.ru/u-STFrqbm8weFIsMOI2D1O3ssSw=/0x0:200x200/200x200/filters:quality(100)/https://hb.bizmrg.com/esports-core-media/1a/1a93d8c0d3f74739720c28e3c9849051.png?m=02845029a29cec1a38d58d32810eb54f',
+                    likeCounts: 0,
                 };
-                state.postData.push(newPost);
-                break;
+               /* let stateCopy = {...state}
+                stateCopy.postData = [...state.postData];
+                stateCopy.postData.push(newPost);
+                stateCopy.newPostText = '';
+                return stateCopy;*/
+debugger
+                return {
+
+                    ...state,
+                    postData: [...state.postData, newPost],
+                    newPostText: ''
+                };
+
+
+                /*state.postData.push(newPost);*/
+            }
+
             case UPDATE_NEW_POST_TEXT :
-                state.newPostText = action.newText;
-                break;
+
+                return {
+                    ...state,
+                    newPostText: action.newText
+
+                };
+
+               /* state.newPostText = action.newText;*/
+               /* break;*/
             default: return state;
 
 
         }
 
-    return state;
+/*    return state;*/
+};
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+};
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
 };
 
 export default ProfileReducer;

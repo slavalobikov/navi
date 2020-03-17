@@ -7,7 +7,7 @@ import Dialogs from "./comonents/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./comonents/News/News";
 import Music from "./comonents/Music/Music";
-import {Provider} from "react-redux";
+
 import FriendsContainer from "./comonents/Friends/FriendsContainer";
 
 const App = (props) => {
