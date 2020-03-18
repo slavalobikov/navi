@@ -1,4 +1,5 @@
-/*import {rerenderEntireTree} from "../render";*/
+/*
+/!*import {rerenderEntireTree} from "../render";*!/
 import ProfileReducer from "./ProfileReducer";
 import MessagesReducer from "./MessagesReducer";
 import NavPageReducer from "./NavPageReducer";
@@ -57,7 +58,7 @@ let store = {
             ]
         }
 
-    }, /*Cтарый стор*/
+    }, /!*Cтарый стор*!/
 
     getState() {
         return this._state;
@@ -76,7 +77,7 @@ let store = {
 
          this._callSubscriber(this._state);
 
-      /*  switch (action.type) {
+      /!*  switch (action.type) {
             case ADD_POST :
                 let newPost = {
                     id: 4,
@@ -104,7 +105,7 @@ let store = {
                 this._callSubscriber(this._state);
 
 
-        }*/
+        }*!/
 
 
 
@@ -114,7 +115,7 @@ let store = {
 };
 
 
-/*
+/!*
 let rerenderEntireTree = () => {
     console.log('dgdg')
 };
@@ -195,7 +196,7 @@ export const updateNewMessageText = (newText) => {
 export const subscribe = (observer) => {
 rerenderEntireTree = observer;
 };
-*/
+*!/
 
 
 export const addPostActionCreator = () => {
@@ -225,3 +226,4 @@ export const updateNewMessageTextCreator = (text) => {
 
 
 export default store;
+*/
