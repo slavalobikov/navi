@@ -1,7 +1,7 @@
 
 import {connect} from "react-redux";
 import Friends from "./Friends";
-import {followActionCreator, unfollowActionCreator} from "../../redux/FriendsReducer";
+import {followActionCreator, setFriendsAC, unfollowActionCreator} from "../../redux/FriendsReducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -16,6 +16,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         unfollow: (userID) => {
             dispatch(unfollowActionCreator(userID))
+        },
+        setFriends: (friends) => {
+            dispatch(setFriendsAC(friends))
         }
 /*        updateNewMessageText: (text) => {
             dispatch(updateNewMessageTextCreator(text))

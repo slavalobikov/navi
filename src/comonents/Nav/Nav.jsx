@@ -12,6 +12,9 @@ const Nav = (props) => {
     return (
         <nav className={cls.item}>
             <div><NavLink to="/Profile">Profile</NavLink></div>
+
+
+
             <div><NavLink to="/Dialogs">Messages</NavLink></div>
             <div><NavLink to="/News">News</NavLink></div>
             <div><NavLink to="/Music">Musics</NavLink></div>
