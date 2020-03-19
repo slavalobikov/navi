@@ -4,24 +4,27 @@ import * as axios from 'axios';
 import userPhoto from './../../assets/imgs/User-icon.png'
 
 let Friends = (props) => {
-        if  (props.friends.length === 0) {
-            axios.get ("https://social-network.samuraijs.com/api/1.0/users").then (response => {
+
+    let getUsers = () => {
+        if (props.friends.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
                 debugger
-                props.setFriends(response.data.items );
+                props.setFriends(response.data.items);
 
             })
-          /*  props.setFriends(  [
-                {id:1, name: 'DimaAMDa' , status:'zavod', folowed: true,
-                    imgs: 'https://sun9-24.userapi.com/c626321/v626321424/301e2/gHrxJ28_584.jpg' },
-                {id:2, name: 'Palec18' , status:'prosloe', folowed: false,
-                    imgs:'https://sun9-50.userapi.com/c850120/v850120393/11c26f/dOJ__m_i5eQ.jpg' },
-                {id:3, name: 'zavsze' , status:'ahahha', folowed: true,
-                    imgs: 'https://sun9-14.userapi.com/c851228/v851228802/cb5c6/E5KMH7GoMNA.jpg' }
-            ]);*/
+            /*  props.setFriends(  [
+                  {id:1, name: 'DimaAMDa' , status:'zavod', folowed: true,
+                      imgs: 'https://sun9-24.userapi.com/c626321/v626321424/301e2/gHrxJ28_584.jpg' },
+                  {id:2, name: 'Palec18' , status:'prosloe', folowed: false,
+                      imgs:'https://sun9-50.userapi.com/c850120/v850120393/11c26f/dOJ__m_i5eQ.jpg' },
+                  {id:3, name: 'zavsze' , status:'ahahha', folowed: true,
+                      imgs: 'https://sun9-14.userapi.com/c851228/v851228802/cb5c6/E5KMH7GoMNA.jpg' }
+              ]);*/
         }
+    };
 
-
-return <div>
+return <div className={cls.background}>
+            <button onClick={getUsers}>Показать пользователей</button>
     {
         props.friends.map (f => <div className={cls.user} key={f.id}>
                 <div>
