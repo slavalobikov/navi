@@ -1,7 +1,8 @@
 
 import {connect} from "react-redux";
-import Friends from "./Friends";
+/*import Friends from "./FriendsC";*/
 import {followActionCreator, setFriendsAC, unfollowActionCreator} from "../../redux/FriendsReducer";
+import Friends from "./Friends";
 
 let mapStateToProps = (state) => {
     return {
