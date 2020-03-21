@@ -18,7 +18,17 @@
    background-color: darkgrey;
 }
 
-.background button {
+.item {
+   color:gold;
+}
 
+.number {
+   padding-top: 15px;
+   padding-bottom: 15px;;
+   text-align: center;
+}
+
+.number span {
+   padding-left: 5px;
 }
 

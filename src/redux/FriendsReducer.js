@@ -1,6 +1,8 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_FRIENDS = 'SET_FRIENDS';
+const SET_CURRENT_PAGE ='SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT ='SET_TOTAL_USERS_COUNT';
 
 let initialState = {
    friends: [/*
@@ -10,7 +12,11 @@ let initialState = {
            imgs:'https://sun9-50.userapi.com/c850120/v850120393/11c26f/dOJ__m_i5eQ.jpg' },
        {id:3, name: 'zavsze' , status:'ahahha', folowed: true,
            imgs: 'https://sun9-14.userapi.com/c851228/v851228802/cb5c6/E5KMH7GoMNA.jpg' }
-    */]
+    */],
+    pageSize: 4,
+    totalUsersCount: 0,
+    currentPage: 1
+
 };
 
 const FriendsReducer = (state = initialState, action) => {
@@ -42,7 +48,12 @@ const FriendsReducer = (state = initialState, action) => {
                     })
                 };
             case SET_FRIENDS: {
-                return {...state, friends: [...state.friends, ...action.friends]}
+                return {...state, friends: action.friends}
+            }
+            case SET_CURRENT_PAGE: {
+                return {...state, currentPage: action.currentPage}
+            } case SET_TOTAL_USERS_COUNT: {
+                return {...state, totalUsersCount: action.totalUsersCount}
             }
 
 
@@ -52,26 +63,28 @@ const FriendsReducer = (state = initialState, action) => {
         return state;
 };
 
-export const followActionCreator = (userID) => (
-    {
+export const followActionCreator = (userID) => ({
         type: FOLLOW,
         userID
-    }
-);
+    });
 
-export const unfollowActionCreator = (userID) => (
-    {
+export const unfollowActionCreator = (userID) => ( {
         type:UNFOLLOW,
         userID
-    }
-);
+    });
 
-export const setFriendsAC = (friends) => (
-    {
+export const setFriendsAC = (friends) => ({
         type:SET_FRIENDS,
         friends
-    }
-);
+    });
+export const setCurrentPageAC = (currentPage) => ({
+    type: SET_CURRENT_PAGE,
+    currentPage
+});
+export const setUsersTotalCountAC = (totalUsersCount) => ({
+    type: SET_TOTAL_USERS_COUNT,
+    count:totalUsersCount
+});
 
 
 export default FriendsReducer;
