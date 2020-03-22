@@ -9,6 +9,7 @@ import News from "./comonents/News/News";
 import Music from "./comonents/Music/Music";
 
 import FriendsContainer from "./comonents/Friends/FriendsContainer";
+import MyPostContainer from "./comonents/Posts/MyPostContainer";
 
 
 const App = (props) => {
@@ -19,7 +20,7 @@ const App = (props) => {
                 <Nav imgs={props.state.NavPage.sidebar} name={props.state.NavPage.sidebar} />
                 <div className='app-wraper-content'>
 
-                    <Route path="/Profile" render={() => <MyPost postData={props.state.profilePage.postData}
+                    <Route path="/Profile" render={() => <MyPostContainer postData={props.state.profilePage.postData}
                                                                  dispatch={props.dispatch}
                                                                  newPostText={props.state.profilePage.newPostText}
                                                                  store={props.store}

@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SET_FRIENDS_PROFILE = 'SET_FRIENDS_PROFILET';
 
 let initialState = {
     postData: [
@@ -22,7 +23,8 @@ let initialState = {
             likeCounts: 1289,
         }
     ],
-    newPostText: 'Напиши что-либо'
+    newPostText: 'Напиши что-либо',
+    profile: null,
 
 
 };
@@ -44,7 +46,6 @@ const ProfileReducer = (state = initialState, action) => {
                 stateCopy.postData.push(newPost);
                 stateCopy.newPostText = '';
                 return stateCopy;*/
-debugger
                 return {
 
                     ...state,
@@ -63,6 +64,11 @@ debugger
                     newPostText: action.newText
 
                 };
+            case SET_FRIENDS_PROFILE:
+                return {
+                    ...state,
+                    profile:action.profile
+                }
 
                /* state.newPostText = action.newText;*/
                /* break;*/
@@ -83,6 +89,12 @@ export const updateNewPostTextActionCreator = (text) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: text
+    }
+};
+export const setFriendsProfile = (profile) => {
+    return {
+        type: SET_FRIENDS_PROFILE,
+        profile
     }
 };
 
