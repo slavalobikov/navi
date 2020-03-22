@@ -1,75 +1,57 @@
-import React from "react";
-import cls from './Friends.module.css'
-import * as axios from 'axios';
+import React from 'react'
+import cls from "./Friends.module.css";
 import userPhoto from './../../assets/imgs/User-icon.png'
 
-class Friends extends React.Component {
+let Friends = (props) => {
 
-    /*    constructor(props) {
-            super(props);*/
-    componentDidMount() {
-
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setFriends(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount);
-            /*this.props.setTotalUsersCount(response.data.setTotalUsersCount);*/
-
-        });
-
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
 
-onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
-        this.props.setFriends(response.data.items); })
-};
-    render() {
+    return <div className={cls.background}>
+        <div>
+            {pages.map(p => {
+                return <span key={props.id} className={props.currentPage === p ? cls.item : " "}
+                             onClick={() => {
+                                 props.onPageChanged(p);
+                             }
 
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i);
-        }
+                             }>{p}</span>
+            })}
 
-        return <div className={cls.background}>
-            <div>
-                {pages.map(p => {
-                    return <span className={this.props.currentPage === p ? cls.item : " " }
-                                 onClick={() => {this.onPageChanged(p);}} >{p}</span>
-                })}
-
-            </div>
-
-            {
-                this.props.friends.map(f => <div className={cls.user} key={f.id}>
-                        <div>
-                            <div><img className={cls.avaImg} src={f.photos.small != null ? f.photos.small : userPhoto}
-                                      alt={f.name}/></div>
-                            {f.name}
-                            {f.folowed
-                                ? <div>
-                                    <button onClick={() => {
-                                        this.props.folow(f.id)
-                                    }}> Follow
-                                    </button>
-                                </div>
-                                : <div>
-                                    <button onClick={() => {
-                                        this.props.unfollow(f.id)
-                                    }}> unFollow
-                                    </button>
-                                </div>}
-
-                        </div>
-
-                        Привет {f.name}
-                    </div>
-                )
-            }
         </div>
 
+        {
+            props.friends.map(f => <div className={cls.user} key={f.id}>
+                    <div>
+                        <div><img className={cls.avaImg} src={f.photos.small != null ? f.photos.small : userPhoto}
+                                  alt={f.name}/></div>
+                        {f.name}
+                        {f.folowed
+                            ? <div>
+                                <button onClick={() => {
+                                    props.folow(f.id)
+                                }}> Follow
+                                </button>
+                            </div>
+                            : <div>
+                                <button onClick={() => {
+                                    props.unfollow(f.id)
+                                }}> unFollow
+                                </button>
+                            </div>}
 
-    };
-}
+                    </div>
 
-export default Friends
+                    Привет {f.name}
+                </div>
+            )
+        }
+    </div>
+
+
+};
+
+export default Friends;

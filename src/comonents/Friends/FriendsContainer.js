@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-/*import Friends from "./FriendsC";*/
+
 import {
     followActionCreator,
     setCurrentPageAC,
@@ -7,7 +7,7 @@ import {
     setUsersTotalCountAC,
     unfollowActionCreator
 } from "../../redux/FriendsReducer";
-import Friends from "./Friends";
+import FriendsAPIComponent from "./FriendsAPIComponent";
 
 let mapStateToProps = (state) => {
     return {
@@ -46,6 +46,6 @@ let mapDispatchToProps = (dispatch) => {
 }
 
 
-let FriendsContainer = connect(mapStateToProps, mapDispatchToProps)(Friends);
+let FriendsContainer = connect(mapStateToProps, mapDispatchToProps)(FriendsAPIComponent);
 
 export default FriendsContainer;
