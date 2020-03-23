@@ -20,7 +20,7 @@ const App = (props) => {
                 <Nav imgs={props.state.NavPage.sidebar} name={props.state.NavPage.sidebar} />
                 <div className='app-wraper-content'>
 
-                    <Route path="/Profile" render={() => <MyPostContainer postData={props.state.profilePage.postData}
+                    <Route path="/Profile/:userID?" render={() => <MyPostContainer postData={props.state.profilePage.postData}
                                                                  dispatch={props.dispatch}
                                                                  newPostText={props.state.profilePage.newPostText}
                                                                  store={props.store}
