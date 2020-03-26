@@ -38,25 +38,32 @@ let Friends = (props) => {
                         {f.name}
                         {f.followed
                             ? <div>
-                                <button onClick={() => {
-                                   userAPI.deleteFriend(f.id).then(resultCode => {
+                                <button disabled={props.followingInProgress.some(id => id == f.id)} onClick={() => {
+                                    props.unfollowThunkCreator(f.id);
+/*                                    props.toggleFollowingProgress(true , f.id);
+                                    userAPI.deleteFriend(f.id).then(resultCode => {
                                         if (resultCode == 0) {
                                             props.unfollow(f.id)
                                         }
-                                    })
+                                        props.toggleFollowingProgress(false, f.id)
+                                    })*/
 
                                 }}> unFollow
                                 </button>
 
                             </div>
                             : <div>
-                                <button onClick={() => {
-
+                                <button disabled={props.followingInProgress.some(id => id == f.id)} onClick={() => {
+                                    props.followThunkCreator(f.id);
+/*
+                                    props.toggleFollowingProgress(true , f.id)
                                     userAPI.postFriend(f.id).then(resultCode => {
                                             if (resultCode == 0) {
                                                 props.folow(f.id);
                                             }
+                                            props.toggleFollowingProgress(false, f.id)
                                         });
+*/
 
                                 }}> Follow
                                 </button>

@@ -1,13 +1,15 @@
 import {connect} from "react-redux";
-
 import {
-    followActionCreator,
+    followActionCreator, followThunkCreator, getFriendsThunkCreator,
     setCurrentPageAC,
     setFriendsAC,
-    setUsersTotalCountAC, toggleIsFetchingAC,
-    unfollowActionCreator
+    setUsersTotalCountAC, toggleFollowingProgress, toggleIsFetchingAC,
+    unfollowActionCreator, unfollowThunkCreator
 } from "../../redux/FriendsReducer";
 import FriendsAPIComponent from "./FriendsAPIComponent";
+
+
+
 let mapStateToProps = (state) => {
     return {
         friends: state.FriendsPage.friends,
@@ -15,7 +17,7 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.FriendsPage.totalUsersCount,
         currentPage: state.FriendsPage.currentPage,
         isFetching: state.FriendsPage.isFetching,
-
+        followingInProgress: state.FriendsPage.followingInProgress,
 
     }
 
@@ -28,26 +30,32 @@ let mapDispatchToProps = (dispatch) => {
         unfollow: (userID) => {
             dispatch(unfollowActionCreator(userID))
         },
-        setFriends: (friends) => {
+       /* setFriends: (friends) => {
             dispatch(setFriendsAC(friends))
-        },
+        },*/
         setCurrentPage: (pageNumber) => {
             dispatch(setCurrentPageAC(pageNumber))
         },
-        setTotalUsersCount: (totalCount) => {
+       /* setTotalUsersCount: (totalCount) => {
             dispatch(setUsersTotalCountAC(totalCount))
-        },
-        toggleIsFetching: (isFetching) => {
+        },*/
+        /*toggleIsFetching: (isFetching) => {
             dispatch(toggleIsFetchingAC(isFetching))
+        },*/
+        toggleFollowingProgress:(isFetching) => {
+            dispatch(toggleFollowingProgress(isFetching))
+        },
+        getFriendsThunkCreator:(currentPage, pageSize) => {
+            dispatch(getFriendsThunkCreator(currentPage, pageSize))
+        },
+        unfollowThunkCreator:(userID) => {
+            dispatch(unfollowThunkCreator(userID))
+        },
+        followThunkCreator: (userID) => {
+            dispatch(followThunkCreator(userID))
         }
-        /*        updateNewMessageText: (text) => {
-                    dispatch(updateNewMessageTextCreator(text))
-                },
-                addMessage: (text) => {
-                    dispatch(addMessageCreator());*/
     }
 }
-
 
 let FriendsContainer = connect(mapStateToProps, mapDispatchToProps)(FriendsAPIComponent);
 

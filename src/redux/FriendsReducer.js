@@ -1,9 +1,12 @@
+import {userAPI} from "../API/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_FRIENDS = 'SET_FRIENDS';
 const SET_CURRENT_PAGE ='SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT ='SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING ='TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS ='TOGGLE_IS_FOLLOWING_PROGRESS';
 
 let initialState = {
    friends: [/*
@@ -17,7 +20,8 @@ let initialState = {
     pageSize: 4,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingInProgress: [],
 
 };
 
@@ -30,9 +34,7 @@ const FriendsReducer = (state = initialState, action) => {
                     ...state,
                     friends: state.friends.map(f => {
                         if (f.id === action.userID) {
-
                             return {...f, followed: true};
-
                         }
                         return f;
                     } )
@@ -63,9 +65,19 @@ const FriendsReducer = (state = initialState, action) => {
             case TOGGLE_IS_FETCHING: {
                 return {...state, isFetching: action.isFetching}
             }
+            case TOGGLE_IS_FOLLOWING_PROGRESS: {
+                return {...state,
+                    followingInProgress:action.isFetching
+                        ? [...state.followingInProgress, action.userID]
+                        : state.followingInProgress.filter(id => id != action.userID)
+                        /*? [...state.followingInProgress, action.userID]
+                        : state.followingInProgress.filter(id => id != action.userID)*/
+                }
+            }
             default: return state;
         }
-        return state;
+
+    /*    return state;*/
 };
 
 export const followActionCreator = (userID) => ({
@@ -93,6 +105,52 @@ export const toggleIsFetchingAC = (isFetching) => ({
     isFetching
 
 });
+export const toggleFollowingProgress = (isFetching, userID) => ({
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    isFetching,
+    userID
 
+});
+
+export const getFriendsThunkCreator = (currentPage, pageSize) => {
+   return (dispatch) => {
+       dispatch(setCurrentPageAC(/*pageNumber*/ currentPage ));
+    dispatch(toggleIsFetchingAC(true));
+
+    userAPI.getFriends(currentPage , pageSize).then(data => {
+        dispatch(toggleIsFetchingAC(false));
+        dispatch(setFriendsAC(data.items));
+        dispatch(setUsersTotalCountAC(data.totalCount));
+
+
+    });
+
+    }
+}
+
+export const unfollowThunkCreator = (userID) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgress(true , userID));
+        userAPI.deleteFriend(userID).then(resultCode => {
+            if (resultCode == 0) {
+                dispatch(unfollowActionCreator(userID))
+            }
+            dispatch(toggleFollowingProgress(false, userID))
+        })
+
+    }
+};
+export const followThunkCreator = (userID) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgress(true , userID));
+        userAPI.postFriend(userID).then(resultCode => {
+            if (resultCode == 0) {
+                dispatch(followActionCreator(userID))
+            }
+            dispatch(toggleFollowingProgress(false, userID))
+        })
+
+    }
+};
 
 export default FriendsReducer;
