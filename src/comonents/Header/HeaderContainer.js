@@ -2,8 +2,9 @@ import React from 'react';
 import Header from "./Header";
 import * as axios from "axios";
 import {connect} from "react-redux";
-import {setUserData} from "../../redux/AuthReducer";
+import {authThunk, setUserData} from "../../redux/AuthReducer";
 import {setAvaUser} from "../../redux/AuthReducer";
+import {userAPI} from "../../API/api";
 
 
 
@@ -14,23 +15,20 @@ import {setAvaUser} from "../../redux/AuthReducer";
 
 
      componentDidMount() {
+            this.props.authThunk();
 
-         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-             withCredentials: true
-         })
-             .then(response => {
-                    if (response.data.resultCode === 0) {
-                        /*this.props.setUserData(response.data.data)*/
-                        let {id, email, login} = response.data.data; /**/
+          /*  userAPI.getAuth().then(data => {
+                    if (data.resultCode === 0) {
+                        /!*this.props.setUserData(response.data.data)*!/
+                        let {id, email, login} = data.data;
                         this.props.setUserData(id, email, login);
-                        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + id)
-                            .then(response => {
-                                this.props.setAvaUser(response.data.photos.small);
+                            userAPI.getProfile(id).then(small => {
+                                this.props.setAvaUser(small);
                             })
                     }
 
              })
-
+*/
      };
 
 
@@ -56,5 +54,4 @@ let mapStateToProps = (state) => ({
 });
 
 
-export default connect( mapStateToProps,{setUserData,
-                                         setAvaUser}  )(HeaderContainer);
+export default connect( mapStateToProps,{setUserData, setAvaUser, authThunk}  )(HeaderContainer);

@@ -1,3 +1,6 @@
+import {userAPI} from "../API/api";
+import {followActionCreator, toggleFollowingProgress} from "./FriendsReducer";
+
 const SET_USERS_DATA = 'SET_USERS_DATA';
 const SET_AVA_USER = 'SET_AVA_USER';
 
@@ -39,6 +42,22 @@ export const setAvaUser = (ava) => ({
     type: SET_USERS_DATA,
     ava
 });
+
+export const authThunk = () => {
+    return (dispatch) => {
+        userAPI.getAuth().then(data => {
+            if (data.resultCode === 0) {
+                let {id, email, login} = data.data;
+                dispatch(setUserData(id, email, login));
+                userAPI.getProfile(id).then(small => {
+                    dispatch(setAvaUser(small));
+                })
+            }
+
+        })
+
+    }
+};
 
 
 

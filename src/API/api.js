@@ -29,7 +29,19 @@ export const userAPI = {
             .then (response => {
                 return response.data.resultCode
             })
-    }
-}
+    },
+    getAuth(){
+        return instance.get(`auth/me`)
+            .then(response => {
+                return response.data
+            })
+    },
+    getProfile(id){
+        return instance.get(`profile/` + id)
+            .then(response => {
+                return response.data.photos.small
+            })
+    },
+};
 
 
