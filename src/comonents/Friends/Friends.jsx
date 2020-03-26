@@ -3,6 +3,7 @@ import cls from "./Friends.module.css";
 import userPhoto from './../../assets/imgs/User-icon.png'
 import {NavLink} from "react-router-dom";
 import * as axios from 'axios';
+import {userAPI} from "../../API/api";
 
 let Friends = (props) => {
 
@@ -38,19 +39,10 @@ let Friends = (props) => {
                         {f.followed
                             ? <div>
                                 <button onClick={() => {
-
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,
-                                        {
-                                            withCredentials:true,
-                                            headers:{
-                                                "API-KEY":"be820c73-af0b-4ffa-9553-5bd0d04425d6"}
-                                        }).then(response => {
-                                        /*if (response.data.resultCode == 0)*/
-                                        debugger
-                                        props.unfollow(f.id)
-                                        /*     props.folow(f.id);*/
-
-
+                                   userAPI.deleteFriend(f.id).then(resultCode => {
+                                        if (resultCode == 0) {
+                                            props.unfollow(f.id)
+                                        }
                                     })
 
                                 }}> unFollow
@@ -60,20 +52,10 @@ let Friends = (props) => {
                             : <div>
                                 <button onClick={() => {
 
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,
-                                        {},
-                                        {withCredentials:true,
-                                            headers:{
-                                                "API-KEY":"be820c73-af0b-4ffa-9553-5bd0d04425d6"}
-                                        }
-                                    )
-                                        .then(response => {
-
-                                            /*if (response.data.resultCode == 0)*/
-                                            debugger
-                                            props.folow(f.id);
-                                            /*props.unfollow(f.id)*/
-
+                                    userAPI.postFriend(f.id).then(resultCode => {
+                                            if (resultCode == 0) {
+                                                props.folow(f.id);
+                                            }
                                         });
 
                                 }}> Follow
