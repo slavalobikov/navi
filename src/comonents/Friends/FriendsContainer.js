@@ -8,7 +8,6 @@ import {
     unfollowActionCreator
 } from "../../redux/FriendsReducer";
 import FriendsAPIComponent from "./FriendsAPIComponent";
-
 let mapStateToProps = (state) => {
     return {
         friends: state.FriendsPage.friends,

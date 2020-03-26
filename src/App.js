@@ -1,22 +1,20 @@
 import React from 'react';
 import './App.css';
-import Header from "./comonents/Header/Header";
 import Nav from "./comonents/Nav/Nav";
-import MyPost from "./comonents/Posts/MyPost";
 import Dialogs from "./comonents/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./comonents/News/News";
 import Music from "./comonents/Music/Music";
-
 import FriendsContainer from "./comonents/Friends/FriendsContainer";
 import MyPostContainer from "./comonents/Posts/MyPostContainer";
+import HeaderContainer from "./comonents/Header/HeaderContainer";
 
 
 const App = (props) => {
     return (
 
             <div className="app-wraper ">
-                <Header/>
+                <HeaderContainer />
                 <Nav imgs={props.state.NavPage.sidebar} name={props.state.NavPage.sidebar} />
                 <div className='app-wraper-content'>
 

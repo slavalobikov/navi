@@ -3,6 +3,7 @@ import ProfileReducer from "./ProfileReducer";
 import MessagesReducer from "./MessagesReducer";
 import NavPageReducer from "./NavPageReducer";
 import FriendsReducer from "./FriendsReducer";
+import AuthReducer from "./AuthReducer";
 
 
 let reducers = combineReducers({
@@ -10,6 +11,7 @@ let reducers = combineReducers({
     messagesPage: MessagesReducer,
     NavPage: NavPageReducer,
     FriendsPage: FriendsReducer,
+    auth: AuthReducer,
 
 });
 

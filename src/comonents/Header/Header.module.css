@@ -3,8 +3,16 @@
     background-color:midnightblue;
 }
 
-
-
 .item img {
     width: 60px;
+}
+
+.login {
+    float:right;
+    margin-top: 12px;
+    margin-right: 12px;
+}
+
+.login a {
+    color: white;
 }

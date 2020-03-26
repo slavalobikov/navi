@@ -25,12 +25,13 @@ const FriendsReducer = (state = initialState, action) => {
 
         switch (action.type) {
             case FOLLOW:
+
                 return  {
                     ...state,
                     friends: state.friends.map(f => {
                         if (f.id === action.userID) {
 
-                            return {...f, folowed: false};
+                            return {...f, followed: true};
 
                         }
                         return f;
@@ -39,11 +40,12 @@ const FriendsReducer = (state = initialState, action) => {
                 };
 
             case UNFOLLOW:
+
                 return {
                     ...state,
                     friends: state.friends.map(f=> {
                         if (f.id === action.userID) {
-                            return {...f, folowed: true}
+                            return {...f, followed: false}
 
                         }
                         return f;
@@ -58,12 +60,9 @@ const FriendsReducer = (state = initialState, action) => {
             case SET_TOTAL_USERS_COUNT: {
                 return {...state, totalUsersCount: action.count}
             }
- case TOGGLE_IS_FETCHING: {
+            case TOGGLE_IS_FETCHING: {
                 return {...state, isFetching: action.isFetching}
             }
-
-
-
             default: return state;
         }
         return state;

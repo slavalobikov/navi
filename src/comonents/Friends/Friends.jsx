@@ -2,6 +2,7 @@ import React from 'react'
 import cls from "./Friends.module.css";
 import userPhoto from './../../assets/imgs/User-icon.png'
 import {NavLink} from "react-router-dom";
+import * as axios from 'axios';
 
 let Friends = (props) => {
 
@@ -34,17 +35,48 @@ let Friends = (props) => {
                             </NavLink>
                         </div>
                         {f.name}
-                        {f.folowed
+                        {f.followed
                             ? <div>
                                 <button onClick={() => {
-                                    props.folow(f.id)
-                                }}> Follow
+
+                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,
+                                        {
+                                            withCredentials:true,
+                                            headers:{
+                                                "API-KEY":"be820c73-af0b-4ffa-9553-5bd0d04425d6"}
+                                        }).then(response => {
+                                        /*if (response.data.resultCode == 0)*/
+                                        debugger
+                                        props.unfollow(f.id)
+                                        /*     props.folow(f.id);*/
+
+
+                                    })
+
+                                }}> unFollow
                                 </button>
+
                             </div>
                             : <div>
                                 <button onClick={() => {
-                                    props.unfollow(f.id)
-                                }}> unFollow
+
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${f.id}`,
+                                        {},
+                                        {withCredentials:true,
+                                            headers:{
+                                                "API-KEY":"be820c73-af0b-4ffa-9553-5bd0d04425d6"}
+                                        }
+                                    )
+                                        .then(response => {
+
+                                            /*if (response.data.resultCode == 0)*/
+                                            debugger
+                                            props.folow(f.id);
+                                            /*props.unfollow(f.id)*/
+
+                                        });
+
+                                }}> Follow
                                 </button>
                             </div>}
 
