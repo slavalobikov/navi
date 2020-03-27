@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import React from "react";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 /*const PanelContainer = (props) => {
            /!* let newMessageText = props.store.getState().messagesPage.newMessageText;*!/
@@ -51,9 +52,15 @@ let mapStateToPropsRedirect = (state) => {
 };
 
 
-let AuthRedirectComponent = withAuthRedirect(Panel); /* HOC что бы редиректить в логин */
+/*let AuthRedirectComponent = withAuthRedirect(Panel); /!* HOC что бы редиректить в логин *!/
 AuthRedirectComponent = connect(mapStateToPropsRedirect)(AuthRedirectComponent);
 
 let PanelContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
-export default PanelContainer;
+export default PanelContainer;*/
+
+export default compose(
+
+    connect(mapStateToPropsRedirect),
+    withAuthRedirect
+)(Panel)
