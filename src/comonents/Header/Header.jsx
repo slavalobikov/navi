@@ -6,6 +6,7 @@ import User from './../../assets/imgs/User-icon.png'
 
 
 const Header = (props) => {
+
     let ava = props.ava;
     if (!ava) {
         ava = User;

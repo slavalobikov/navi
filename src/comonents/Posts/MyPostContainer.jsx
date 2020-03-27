@@ -2,30 +2,37 @@ import React from 'react';
 import MyPost from "./MyPost";
 import * as axios from "axios";
 import {connect} from "react-redux";
-import {setFriendsProfile} from "../../redux/ProfileReducer";
-import {withRouter} from "react-router-dom";
+import {FriendThunkCreator, setFriendsProfile} from "../../redux/ProfileReducer";
+import {Redirect, withRouter} from "react-router-dom";
+import {userAPI} from "../../API/api";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 
 class MyPostContainer extends React.Component {
+
+
 
     componentDidMount() {
         let userID = this.props.match.params.userID;
         if (!userID) {
             userID = 2;
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID)
-            .then(response => {
-                this.props.setFriendsProfile(response.data);
-            })
+        this.props.FriendThunkCreator(userID);
+           /* userAPI.getProfile(userID).then(data => {
+                this.props.setFriendsProfile(data);
+            })*/
     }
 
     render() {
-
+        /*if (this.props.isAuth == false) {
+            return <Redirect to={'/Login'} />
+        }*/
         return (
             <div >
 
-               <MyPost {...this.props} profile={this.props.profile} />
+               <MyPost {...this.props} profile={this.props.profile}
+                                       />
 
             </div>
         );
@@ -33,12 +40,25 @@ class MyPostContainer extends React.Component {
     }
 
 
+
+
+
+
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+/*    isAuth: state.auth.isAuth,*/
 });
 
-let WithURLDataContainerComponent = withRouter(MyPostContainer);
+let mapStateToPropsRedirect = (state) => ({
+    isAuth: state.auth.isAuth
+});
 
-export default connect (mapStateToProps, { setFriendsProfile }) (WithURLDataContainerComponent);
+let AuthRedirectComponent = withAuthRedirect((MyPostContainer))
+
+AuthRedirectComponent = connect(mapStateToPropsRedirect)(AuthRedirectComponent); /* HOC ЧТо бы редирект на логин*/
+
+let WithURLDataContainerComponent = withRouter(AuthRedirectComponent);
+
+export default connect (mapStateToProps, { setFriendsProfile, FriendThunkCreator }) (WithURLDataContainerComponent);
 
 

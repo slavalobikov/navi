@@ -39,7 +39,7 @@ export const userAPI = {
     getProfile(id){
         return instance.get(`profile/` + id)
             .then(response => {
-                return response.data.photos.small
+                return response.data/*.photos.small*/
             })
     },
 };

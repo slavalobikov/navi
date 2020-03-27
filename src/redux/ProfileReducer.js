@@ -1,3 +1,6 @@
+import {userAPI} from "../API/api";
+import {followActionCreator, toggleFollowingProgress} from "./FriendsReducer";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_FRIENDS_PROFILE = 'SET_FRIENDS_PROFILET';
@@ -97,5 +100,16 @@ export const setFriendsProfile = (profile) => {
         profile
     }
 };
+
+export const FriendThunkCreator = (userID) => {
+    return (dispatch) => {
+        userAPI.getProfile(userID).then(data => {
+            dispatch(setFriendsProfile(data));
+        }
+        )}
+}
+
+
+
 
 export default ProfileReducer;

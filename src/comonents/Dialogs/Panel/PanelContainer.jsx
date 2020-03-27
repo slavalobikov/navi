@@ -1,6 +1,9 @@
 import {addMessageCreator, updateNewMessageTextCreator} from "../../../redux/MessagesReducer";
 import Panel from "./Panel";
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
+import React from "react";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 /*const PanelContainer = (props) => {
            /!* let newMessageText = props.store.getState().messagesPage.newMessageText;*!/
@@ -25,7 +28,8 @@ import {connect} from "react-redux";
 let mapStateToProps = (state) => {
 
     return {
-        newMessageText: state.messagesPage.newMessageText
+        newMessageText: state.messagesPage.newMessageText,
+/*        isAuth: state.auth.isAuth,*/
     };
 };
 let mapDispatchToProps = (dispatch) => {
@@ -40,7 +44,16 @@ let mapDispatchToProps = (dispatch) => {
         }
     }
 };
+let mapStateToPropsRedirect = (state) => {
+    return {
+        isAuth: state.auth.isAuth,
+    };
+};
 
-let PanelContainer = connect(mapStateToProps, mapDispatchToProps)(Panel);
+
+let AuthRedirectComponent = withAuthRedirect(Panel); /* HOC что бы редиректить в логин */
+AuthRedirectComponent = connect(mapStateToPropsRedirect)(AuthRedirectComponent);
+
+let PanelContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 export default PanelContainer;

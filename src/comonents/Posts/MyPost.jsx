@@ -24,7 +24,7 @@ const MyPost = (props) => {
                              profile={props.profile}
 
 
-                             state={props.state} store={props.store}/>
+                             /*state={props.state} store={props.store}*//>
            <div className={cls.coment}>{ postsElements }</div>
 
         </div>

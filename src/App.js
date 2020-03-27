@@ -8,6 +8,7 @@ import Music from "./comonents/Music/Music";
 import FriendsContainer from "./comonents/Friends/FriendsContainer";
 import MyPostContainer from "./comonents/Posts/MyPostContainer";
 import HeaderContainer from "./comonents/Header/HeaderContainer";
+import Login from "./comonents/Login/Login";
 
 
 const App = (props) => {
@@ -32,6 +33,7 @@ const App = (props) => {
                     <Route path="/Friends" render={ () => <FriendsContainer /> } />
                     <Route path="/News" component={News}/>
                     <Route path="/Music" component={Music}/>
+                    <Route path="/Login"  render={() => <Login />} />
                 </div>
             </div>
     );

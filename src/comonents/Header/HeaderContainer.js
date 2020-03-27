@@ -15,7 +15,8 @@ import {userAPI} from "../../API/api";
 
 
      componentDidMount() {
-            this.props.authThunk();
+         debugger
+            this.props.authThunk()
 
           /*  userAPI.getAuth().then(data => {
                     if (data.resultCode === 0) {

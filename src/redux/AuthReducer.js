@@ -49,8 +49,8 @@ export const authThunk = () => {
             if (data.resultCode === 0) {
                 let {id, email, login} = data.data;
                 dispatch(setUserData(id, email, login));
-                userAPI.getProfile(id).then(small => {
-                    dispatch(setAvaUser(small));
+                userAPI.getProfile(id).then(data => {
+                    dispatch(setAvaUser(data));
                 })
             }
 
