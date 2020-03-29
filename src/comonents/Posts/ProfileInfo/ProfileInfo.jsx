@@ -4,6 +4,7 @@ import cls from './../MyPost.module.css'
 import PanelPost from "./Panel/PanelPost";
 import PanelPostContainer from "./Panel/PanelPostContainer";
 import Preloader from "../../common/Preloader/Preloader";
+import InfoUser from "./InfoUser/InfoUser";
 
 
 const ProfileInfo = (props) => {
@@ -16,15 +17,13 @@ const ProfileInfo = (props) => {
       <div>
         <img className={cls.logoImg} src="https://gamepedia.cursecdn.com/dota2_gamepedia/7/7f/Brand_banner_Navi.png?version=5ce5ce40791b1c698f4f740f8fe40e48" alt=""/>
         <div><img className={cls.logoAva} src={props.profile.photos.large} alt=""/>
+        <InfoUser status={'GO GO'} />
           Победитель 10 интов из 9
         </div>
-          <PanelPostContainer /*dispatch={props.dispatch}
-                     newPostText={props.newPostText}*/
+          <PanelPostContainer
                      store={props.store}
-                     state={props.state}
-                     /*addPost={props.addPost}
-                     updateNewPostText={props.updateNewPostText}*/ />
-                     {/*<PanelPostContainer store={props.store} dis/>*/}
+                     state={props.state} />
+
       </div>
   );
 };

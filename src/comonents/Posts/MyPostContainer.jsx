@@ -66,7 +66,7 @@ export default compose(
     connect (mapStateToProps, { setFriendsProfile, FriendThunkCreator }),
     withRouter,
     connect(mapStateToPropsRedirect),
-    withAuthRedirect
+  /*  withAuthRedirect*/
 )(MyPostContainer)
 
 
