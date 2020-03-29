@@ -11,14 +11,14 @@ class InfoUser extends React.Component {
       editMode: false
     };
 
-    activateEditeMode = () => {
+    activateEditeMode = () => { // Стрелочная функиця, что бы не пришлось биндить
         this.setState({
             /* Для того что бы изменилось, перерендрилось */ /* setState асинхронная */
             editMode:true
         })
        /* this.state.editMode = true;*/ /* Не перерендрится, так как локал стэйт  */
 };
-    deactivateEditeMode = () => {
+    deactivateEditeMode = () => { // Стрелочная функиця, что бы не пришлось биндить
         this.setState({
             /* Для того что бы изменилось, перерендрилось */ /* setState асинхронная */
             editMode:false
@@ -27,6 +27,7 @@ class InfoUser extends React.Component {
 };
 
 render() {
+    debugger
     return <div >
 
         {this.state.editMode

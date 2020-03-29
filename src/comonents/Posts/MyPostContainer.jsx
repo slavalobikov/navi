@@ -2,7 +2,7 @@ import React from 'react';
 import MyPost from "./MyPost";
 import * as axios from "axios";
 import {connect} from "react-redux";
-import {FriendThunkCreator, setFriendsProfile} from "../../redux/ProfileReducer";
+import {FriendThunkCreator, setFriendsProfile, UserStatusThunkCreator} from "../../redux/ProfileReducer";
 import {Redirect, withRouter} from "react-router-dom";
 import {userAPI} from "../../API/api";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -20,6 +20,7 @@ class MyPostContainer extends React.Component {
             userID = 2;
         }
         this.props.FriendThunkCreator(userID);
+        this.props.UserStatusThunkCreator(userID)
            /* userAPI.getProfile(userID).then(data => {
                 this.props.setFriendsProfile(data);
             })*/
@@ -29,11 +30,12 @@ class MyPostContainer extends React.Component {
         /*if (this.props.isAuth == false) {
             return <Redirect to={'/Login'} />
         }*/
+
         return (
             <div >
 
                <MyPost {...this.props} profile={this.props.profile}
-                                       />
+                                      status={this.props.status} />
 
             </div>
         );
@@ -48,6 +50,7 @@ class MyPostContainer extends React.Component {
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
 /*    isAuth: state.auth.isAuth,*/
+    status: state.profilePage.userStatus
 });
 
 let mapStateToPropsRedirect = (state) => ({
@@ -63,7 +66,7 @@ let WithURLDataContainerComponent = withRouter(AuthRedirectComponent);
 export default connect (mapStateToProps, { setFriendsProfile, FriendThunkCreator }) (WithURLDataContainerComponent);*/
 /*РЕфакторинг снизу(Логику можно понять 70)*/
 export default compose(
-    connect (mapStateToProps, { setFriendsProfile, FriendThunkCreator }),
+    connect (mapStateToProps, { setFriendsProfile, FriendThunkCreator, UserStatusThunkCreator }),
     withRouter,
     connect(mapStateToPropsRedirect),
   /*  withAuthRedirect*/

@@ -37,13 +37,27 @@ export const userAPI = {
             })
     },
     getProfile(id){
-        return instance.get(`profile/` + id)
+        return /*( profileAPI.getProfile(id))*/instance.get(`profile/` + id)
             .then(response => {
                 return response.data/*.photos.small*/
             })
+
     },
 };
 
 
 
-
+export const profileAPI = {
+/*    getProfile(id) {
+        return instance.get(`profile/` + id)
+            .then(response => {
+                return response.data.photos.small
+            })
+    },*/
+    getUserStatus(id) {
+        return instance.get(`profile/status/` + id)
+            .then(response => {
+                return response
+            })
+    },
+}

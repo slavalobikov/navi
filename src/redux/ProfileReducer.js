@@ -1,9 +1,10 @@
-import {userAPI} from "../API/api";
+import {profileAPI, userAPI} from "../API/api";
 import {followActionCreator, toggleFollowingProgress} from "./FriendsReducer";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_FRIENDS_PROFILE = 'SET_FRIENDS_PROFILET';
+const SET_USER_STATUS = 'SET_USER_STATUS';
 
 let initialState = {
     postData: [
@@ -28,6 +29,7 @@ let initialState = {
     ],
     newPostText: 'Напиши что-либо',
     profile: null,
+    userStatus: 'GO GO'
 
 
 };
@@ -71,10 +73,14 @@ const ProfileReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     profile:action.profile
-                }
+                };
+            case SET_USER_STATUS:
+                return {
+                    ...state,
+                    userStatus: action.status
+                };
 
-               /* state.newPostText = action.newText;*/
-               /* break;*/
+
             default: return state;
 
 
@@ -100,14 +106,28 @@ export const setFriendsProfile = (profile) => {
         profile
     }
 };
+export const setUserStatus = (status) => {
+    return {
+        type: SET_USER_STATUS,
+        status
+    }
+};
 
 export const FriendThunkCreator = (userID) => {
+
     return (dispatch) => {
         userAPI.getProfile(userID).then(data => {
             dispatch(setFriendsProfile(data));
         }
         )}
-}
+};
+export const UserStatusThunkCreator = (userID) => {
+    return (dispatch) => {
+        profileAPI.getUserStatus(userID).then(response => {
+            dispatch(setUserStatus(response));
+        }
+        )}
+};
 
 
 

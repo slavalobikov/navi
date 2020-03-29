@@ -15,7 +15,7 @@ import {userAPI} from "../../API/api";
 
 
      componentDidMount() {
-         debugger
+
             this.props.authThunk()
 
           /*  userAPI.getAuth().then(data => {

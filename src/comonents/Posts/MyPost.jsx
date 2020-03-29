@@ -22,6 +22,7 @@ const MyPost = (props) => {
                              postData={props.postData}
                              newPostText={props.newPostText}
                              profile={props.profile}
+                             status={props.status}
 
 
                              /*state={props.state} store={props.store}*//>
