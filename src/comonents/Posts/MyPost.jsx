@@ -23,7 +23,7 @@ const MyPost = (props) => {
                              newPostText={props.newPostText}
                              profile={props.profile}
                              status={props.status}
-
+                             updateStatus={props.updateStatus}
 
                              /*state={props.state} store={props.store}*//>
            <div className={cls.coment}>{ postsElements }</div>

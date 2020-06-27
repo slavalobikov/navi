@@ -37,7 +37,7 @@ export const userAPI = {
             })
     },
     getProfile(id){
-        return /*( profileAPI.getProfile(id))*/instance.get(`profile/` + id)
+        return instance.get(`profile/` + id)
             .then(response => {
                 return response.data/*.photos.small*/
             })
@@ -48,16 +48,16 @@ export const userAPI = {
 
 
 export const profileAPI = {
-/*    getProfile(id) {
-        return instance.get(`profile/` + id)
-            .then(response => {
-                return response.data.photos.small
-            })
-    },*/
     getUserStatus(id) {
         return instance.get(`profile/status/` + id)
             .then(response => {
                 return response
             })
     },
+    ChangeStatus(status){
+        return instance.put(`profile/status`, {status: status}).then(response => {
+            return response
+        })
+    }
+
 }

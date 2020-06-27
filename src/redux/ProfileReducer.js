@@ -5,6 +5,7 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_FRIENDS_PROFILE = 'SET_FRIENDS_PROFILET';
 const SET_USER_STATUS = 'SET_USER_STATUS';
+const CHANGE_STATUS = 'CHANGE_STATUS';
 
 let initialState = {
     postData: [
@@ -81,6 +82,7 @@ const ProfileReducer = (state = initialState, action) => {
                 };
 
 
+
             default: return state;
 
 
@@ -125,6 +127,18 @@ export const UserStatusThunkCreator = (userID) => {
     return (dispatch) => {
         profileAPI.getUserStatus(userID).then(response => {
             dispatch(setUserStatus(response));
+        }
+        )}
+};
+
+export const ChangeStatusThunkCreator = (status) => {
+    return (dispatch) => {
+        profileAPI.ChangeStatus(status).then(response => {
+            if (response.data === 0) {
+                debugger
+                dispatch(setUserStatus(status));
+            }
+
         }
         )}
 };
